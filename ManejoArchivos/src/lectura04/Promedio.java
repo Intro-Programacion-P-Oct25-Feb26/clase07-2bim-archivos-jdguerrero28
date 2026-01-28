@@ -38,11 +38,11 @@ public class Promedio {
             }
             double promedio = suma / contador;
             System.out.printf("Promedio: %.2f\n", promedio);
-        } // fin de try
+        }
         catch (Exception e) {
             System.err.println("Error al leer del archivo.");
             System.exit(1);
-        } // fin de catch
+        }
     }
 
 }
