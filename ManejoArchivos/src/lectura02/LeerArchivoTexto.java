@@ -22,6 +22,12 @@ public class LeerArchivoTexto {
             while (entrada.hasNext()) {
                 String linea = entrada.nextLine();
                 List<String> lista = Arrays.asList(linea.split("\\|"));
+                /*
+                Dentro del split solo se pone directo el caracter de separacion
+                si es que son coma o punto y coma, para cualquier otro caracter
+                de separacion se necesita poner antes del caracter dos "\\" se-
+                guido del caracter para poder escapar caracteres
+                */
                 ArrayList<String> linea_partes = new ArrayList<>(lista);
                 
                 
