@@ -11,9 +11,10 @@ package lectura05;
 public class Principal {
 
     public static void main(String[] args) {
-        Estadisticas.obtenerEstadisticas();
+        double estadisticas = Estadisticas.obtenerPromedio();
+        System.out.printf("El promedio de los empleados es: %.2f\n", estadisticas);
     }
-}
 
+}
 
 
