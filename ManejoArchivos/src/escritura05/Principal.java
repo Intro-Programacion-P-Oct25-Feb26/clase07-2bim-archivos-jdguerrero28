@@ -11,11 +11,14 @@ import java.util.Scanner;
  * @author jdieg
  */
 public class Principal {
-        public static void main(String args[]) {
+
+ public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
+
         boolean bandera = true;
-        String cadenaFinal = "";
         while (bandera) {
+            String cadenaFinal = "";
+
             System.out.println("Ingrese su nombre:");
             String nombre = entrada.nextLine();
             System.out.println("Ingrese su placa:");
@@ -24,19 +27,19 @@ public class Principal {
             String marca = entrada.nextLine();
             System.out.println("Ingrese cedula:");
             String cedula = entrada.nextLine();
-            System.out.println("¿Quiere agregar más pacientes (Si/No)?");
+            System.out.println("¿Quiere agregar más datos (Si/No)?");
             String valor = entrada.nextLine();
-            valor.toUpperCase();
-            cadenaFinal = String.format("%s%s %s %s\n", cadenaFinal,
-                    nombre,
-                    placa, marca, cedula);
-            if (valor.equals("NO")) {
+
+            if (valor.equals("No")) {
                 bandera = false;
             } else {
                 bandera = true;
             }
-            escritura04.Datos.agregarRegistros(cadenaFinal, placa);
+            cadenaFinal = String.format("%s%s %s %s\n", cadenaFinal,
+                    nombre,
+                    placa, marca, cedula);
+            escritura05.Datos.agregarRegistros(cadenaFinal, placa);
         }
+        entrada.close();
     }
 }
-
