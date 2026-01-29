@@ -9,42 +9,49 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.List;
 
 public class Estadisticas {
 
-    public static void obtenerEstadisticas() {
-        double sumaEmpleados = 0;
-        int contador = 0;
+        public static double obtenerPromedio() {
 
-        try {
-            Scanner entrada = new Scanner(new File("data/sucursales.txt"));
+            double suma = 0;
+            int contador = 0;
+            double promedio;
 
-            while (entrada.hasNext()) {
-                String linea = entrada.nextLine();
+            try {
+                Scanner entrada = new Scanner(new File("data/sucursales.txt"));
 
-                try {
-                    ArrayList<String> partes = 
-                            new ArrayList<>(Arrays.asList(linea.split("\\|")));
+                while (entrada.hasNext()) {
+                    String linea = entrada.nextLine();
 
-                    if (partes.size() < 3) {
-                        throw new Exception("Faltan datos");
+                    try {
+
+                        List<String> lista = Arrays.asList(linea.split("\\|"));
+                        ArrayList<String> linea_partes = new ArrayList<>(lista);
+
+                        if (linea_partes.size() != 5) {
+                            throw new Exception("Columnas incompletas)");
+                        }
+                        String variable = linea_partes.get(2);
+
+                        double valor = Double.parseDouble(variable);
+
+                        suma = suma + valor;
+                        contador = contador + 1;
+
+                    } catch (Exception e) {
+                        System.out.println("Registro fallido\n");
                     }
-                    int empleados = Integer.parseInt(partes.get(2));
-
-                    sumaEmpleados = sumaEmpleados + empleados;
-                    contador = contador + 1;
-
-                } catch (Exception e) {
                 }
+
+                entrada.close();
+
+            } catch (Exception e) {
+                System.out.printf("Error al leer el archivo.\n");
             }
-
-            entrada.close();
-
-        } catch (Exception e) {
-            System.err.println("Error general");
+            promedio = suma / contador;
+            return promedio;
         }
-        sumaEmpleados = sumaEmpleados / contador;
-        System.out.printf("Promedio es: %.2f\n", sumaEmpleados);
-
     }
-}
+
